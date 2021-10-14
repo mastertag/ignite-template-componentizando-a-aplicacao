@@ -3,8 +3,12 @@ import {useEffect, useState} from "react";
 import {api} from "../services/api";
 import {GenreResponseProps} from "../interfaces/GenreResponseProps";
 
+interface SideBarProps{
+    onChange: ()=>void
+}
 
-export function SideBar(props:any) {
+
+export function SideBar( {onChange} :SideBarProps ) {
     const [selectedGenreId, setSelectedGenreId] = useState(1);
     const [genres, setGenres] = useState<GenreResponseProps[]>([]);
 
@@ -25,7 +29,7 @@ export function SideBar(props:any) {
         setSelectedGenreId(id);
         let findGenre = genres.find(g=> g.id==id);
         if(findGenre){
-            props.onChange(findGenre); // evento externo
+            onChange(findGenre); // evento externo
         }
     }
 
